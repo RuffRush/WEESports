@@ -11,14 +11,16 @@ jobs:
       matrix:
         targetPlatform:
             - Android # Build an Android .apk standalone app.
-        projectPath:
-             - WEESportsUnity
+
 
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           lfs: true
+    # Sanity check
+      - name: Get directory
+        run: ls src
       - uses: actions/cache@v3
         with:
           path: Library
