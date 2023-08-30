@@ -20,7 +20,7 @@ jobs:
           lfs: true
     # Sanity check
       - name: Get directory
-        run: ls src
+        run: ls WEESportsUnity
       - uses: actions/cache@v3
         with:
           path: Library
