@@ -12,7 +12,7 @@ jobs:
         targetPlatform:
           - Android # Build an Android .apk standalone app.
         projectPath:
-          - WEESports # ** this is what you're looking for **
+          - WEESports\WEESportsUnity # ** this is what you're looking for **
 
     steps:
       - uses: actions/checkout@v3
