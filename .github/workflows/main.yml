@@ -10,15 +10,16 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-            - Android # Build an Android .apk standalone app.
-
+          - Android # Build an Android .apk standalone app.
+        projectPath:
+          - WEESports # ** this is what you're looking for **
 
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           lfs: true
-    # Sanity check
+      # Sanity check
       - name: Get directory
         run: ls WEESportsUnity
       - uses: actions/cache@v3
