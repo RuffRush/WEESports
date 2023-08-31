@@ -30,7 +30,3 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-      - uses: robinraju/release-downloader@v1.8
-        with:
-          latest: true
-          fileName: "*"
