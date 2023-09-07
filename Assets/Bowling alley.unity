@@ -224,7 +224,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.055, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -410,6 +410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BowlingPack
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -423,9 +427,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
       insertIndex: -1
       addedObject: {fileID: 65550594}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 65550595}
   m_SourcePrefab: {fileID: 100100000, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
 --- !u!1 &65550588 stripped
 GameObject:
@@ -643,20 +644,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.0011112499
   m_Center: {x: 0.00003076991, y: 0.000014482762, z: 0.0000022090385}
---- !u!114 &65550595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65550588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9827dd5e132a84d00bf40e468f8f4b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 65550593}
-  respawnPoint: {fileID: 275428936}
 --- !u!1 &78578276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1441,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &290914395
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1393783
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.076
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.2568
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
+      propertyPath: m_Name
+      value: BowlingPack (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b5c39debee2d42ba9a53cbc96392089, type: 3}
 --- !u!1 &443648210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,6 +2590,7 @@ GameObject:
   - component: {fileID: 1440179063}
   - component: {fileID: 1440179062}
   - component: {fileID: 1440179061}
+  - component: {fileID: 1440179065}
   m_Layer: 0
   m_Name: respawnBallTrigger
   m_TagString: Untagged
@@ -2582,7 +2639,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c3f3c9bd0962c4a7f9b159d21e2f1b88, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2622,11 +2679,26 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.034691155, y: 0.13848239, z: 9.277772}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440179065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440179060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9827dd5e132a84d00bf40e468f8f4b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 65550593}
+  respawnPoint: {fileID: 275428936}
+  rb: {fileID: 65550590}
 --- !u!1 &1636204243 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8961359253771211100, guid: 9e1193dd9a558488da71c95a977d571b, type: 3}
@@ -2787,3 +2859,4 @@ SceneRoots:
   - {fileID: 22899409}
   - {fileID: 275428936}
   - {fileID: 1440179064}
+  - {fileID: 290914395}
