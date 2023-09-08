@@ -6,13 +6,27 @@ public class respawnBall : MonoBehaviour
 {
 
     [SerializeField] Transform ball;
-    [SerializeField] Transform respawnPoint;
+    [SerializeField] Transform pins;
+    [SerializeField] Transform ballRespawnPoint;
+    [SerializeField] Transform pinsRespawnPoint;
     [SerializeField] Rigidbody rb;
+    static int count;
+
     // Start is called before the first frame update
 
     private void OnCollisionEnter(Collision other)
     {
-        respawnPlayer();
+        if (other.transform.Equals(ball)) { 
+            respawnPlayer();
+        count++;
+            if (count % 2 == 0)
+            {
+                respawnPins();
+
+            }
+        }
+
+       
         
 
     }
@@ -23,8 +37,21 @@ public class respawnBall : MonoBehaviour
     {
 
         rb.velocity = Vector3.zero;
-        ball.position = respawnPoint.position;
+        ball.position = ballRespawnPoint.position;
         Physics.SyncTransforms();
+        
+
+
+    }
+    public void respawnPins()
+    {
+     
+       
+        pins.position = pinsRespawnPoint.position;
+        Physics.SyncTransforms();
+
+
+
     }
 
 }
