@@ -6,10 +6,11 @@ public class respawnBall : MonoBehaviour
 {
 
     [SerializeField] Transform ball;
-    [SerializeField] Transform pins;
     [SerializeField] Transform ballRespawnPoint;
     [SerializeField] Transform pinsRespawnPoint;
     [SerializeField] Rigidbody rb;
+    [SerializeField] GameObject oldPins;
+    [SerializeField] GameObject newPins;
     static int count;
 
     // Start is called before the first frame update
@@ -45,10 +46,9 @@ public class respawnBall : MonoBehaviour
     }
     public void respawnPins()
     {
-     
-       
-        pins.position = pinsRespawnPoint.position;
-        Physics.SyncTransforms();
+
+        Destroy(oldPins);
+        Instantiate(newPins);
 
 
 

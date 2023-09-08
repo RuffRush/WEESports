@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1802949, g: 0.22573808, b: 0.30694616, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2650,10 +2650,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 4383537991494000991}
-  pins: {fileID: 2382074488956972558}
   ballRespawnPoint: {fileID: 275428936}
   pinsRespawnPoint: {fileID: 290914396}
   rb: {fileID: 290914413}
+  oldPins: {fileID: 2382074488956972559}
+  newPins: {fileID: 4460739478604517677, guid: 1e5419ebe6bd342438371a4725528f9c, type: 3}
 --- !u!1 &1636204243 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8961359253771211100, guid: 9e1193dd9a558488da71c95a977d571b, type: 3}
@@ -2957,6 +2958,11 @@ PrefabInstance:
 --- !u!4 &2382074488956972558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3328430470128327341, guid: 1e5419ebe6bd342438371a4725528f9c, type: 3}
+  m_PrefabInstance: {fileID: 2382074488956972557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2382074488956972559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4460739478604517677, guid: 1e5419ebe6bd342438371a4725528f9c, type: 3}
   m_PrefabInstance: {fileID: 2382074488956972557}
   m_PrefabAsset: {fileID: 0}
 --- !u!33 &3283235154001596203
