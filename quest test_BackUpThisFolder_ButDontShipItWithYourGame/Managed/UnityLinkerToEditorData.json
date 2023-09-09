@@ -689,13 +689,17 @@
         "dependencies": [
           {
             "name": "BoxCollider",
-            "scenes": [],
+            "scenes": [
+              "Assets/Bowling alley.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
           {
             "name": "CapsuleCollider",
-            "scenes": [],
+            "scenes": [
+              "Assets/Bowling alley.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
@@ -708,12 +712,22 @@
           {
             "name": "Collider",
             "scenes": [],
-            "dependencyType": 0,
+            "dependencyType": 1,
             "icon": null
           },
           {
             "name": "MeshCollider",
-            "scenes": [],
+            "scenes": [
+              "Assets/Bowling alley.unity"
+            ],
+            "dependencyType": 0,
+            "icon": null
+          },
+          {
+            "name": "PhysicMaterial",
+            "scenes": [
+              "Assets/Bowling alley.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
@@ -725,13 +739,17 @@
           },
           {
             "name": "Rigidbody",
-            "scenes": [],
+            "scenes": [
+              "Assets/Bowling alley.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
           {
             "name": "SphereCollider",
-            "scenes": [],
+            "scenes": [
+              "Assets/Bowling alley.unity"
+            ],
             "dependencyType": 0,
             "icon": null
           },
