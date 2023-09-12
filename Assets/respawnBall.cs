@@ -13,7 +13,7 @@ public class respawnBall : MonoBehaviour
     [SerializeField] GameObject pins;
 
     GameObject[] pinArray = new GameObject[10];
-    Vector3[] pinStartingLocation = new Vector3[10];
+    Vector3[] pinStartingRotation = new Vector3[10];
     static int count;
     int score;
     int pinsKnocked;
@@ -27,7 +27,7 @@ public class respawnBall : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (other.transform.Equals(ball)) { 
-            respawnPlayer();
+            StartCoroutine(respawnPlayer());
         count++;
             Debug.Log("Knocked down " + pinsKnocked + " pins");
             StartCoroutine(CheckMoving());
@@ -59,7 +59,7 @@ public class respawnBall : MonoBehaviour
             pinArray[9] = GameObject.FindGameObjectWithTag("pin9");
             for (int i = 0; i < 10; i++)
             {
-                pinStartingLocation[i] = pinArray[i].transform.position;
+            pinStartingRotation[i] = pinArray[i].transform.rotation.eulerAngles;
             }
         Debug.Log("David, Arrays have been filled");
         }
@@ -67,9 +67,9 @@ public class respawnBall : MonoBehaviour
 
     
 
-    public void respawnPlayer()
+    public IEnumerator respawnPlayer()
     {
-
+        yield return new WaitForSeconds(1);
         rb.velocity = Vector3.zero;
         ball.position = ballRespawnPoint.position;
         Physics.SyncTransforms();
@@ -80,7 +80,7 @@ public class respawnBall : MonoBehaviour
     public IEnumerator respawnPins()
     {
 
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1);
         GameObject objPrefab = Resources.Load("All Pins") as GameObject;
         GameObject obj = Instantiate(objPrefab) as GameObject;
         StartCoroutine(arrayFiller());
@@ -92,14 +92,13 @@ public class respawnBall : MonoBehaviour
 
     public IEnumerator CheckMoving()
     {
-
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < 10; i++)
         {
 
-            yield return new WaitForEndOfFrame();
-            Vector3 finalPos = pinArray[i].transform.position;
-            if (pinStartingLocation[i].x != finalPos.x || pinStartingLocation[i].y != finalPos.y
-    || pinStartingLocation[i].z != finalPos.z)
+            
+            Vector3 finalPos = pinArray[i].transform.rotation.eulerAngles;
+            if (pinStartingRotation[i].x != finalPos.x)
             {
                 Destroy(GameObject.FindGameObjectWithTag("pin" + i));
                 pinsKnocked++;
