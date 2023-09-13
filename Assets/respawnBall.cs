@@ -17,6 +17,12 @@ public class respawnBall : MonoBehaviour
     static int count;
     int score;
     int pinsKnocked;
+    int curFrame;
+    int pastFrame;
+    int curThrow;
+    bool isStrike;
+    bool isSpare;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -28,17 +34,17 @@ public class respawnBall : MonoBehaviour
     {
         if (other.transform.Equals(ball)) { 
             StartCoroutine(respawnPlayer());
-        count++;
-            Debug.Log("Knocked down " + pinsKnocked + " pins");
+            count++;
             StartCoroutine(CheckMoving());
+            Debug.Log("Knocked down " + pinsKnocked + " pins");
             if (count % 2 == 0)
             {
                 Destroy(GameObject.FindGameObjectWithTag("Pins"));
                 StartCoroutine(respawnPins());
-                score = pinsKnocked;
-                pinsKnocked = 0;
-                Debug.Log("Your score is: " +score);
+
+                
             }
+            scoreKeeper();
         }
 
 
@@ -106,4 +112,28 @@ public class respawnBall : MonoBehaviour
         }
     }
 
+    void scoreKeeper()
+    {
+        curThrow = pinsKnocked;
+        curFrame = curThrow + pinsKnocked;
+
+
+
+        if (isStrike)
+        {
+            curFrame = curThrow*2 + pinsKnocked*2 + 10;
+           
+            Debug.Log("Ater Strike Score: " + curFrame);
+        }
+
+        if (pinsKnocked == 10 && count % 1 == 1)
+        {
+            
+            Debug.Log("STRIKE");
+            isStrike = true;
+            respawnPins();
+        }
+        Debug.Log("Your score is: " + score);
+        pinsKnocked = 0;
+    }
 }
