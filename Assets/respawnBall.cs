@@ -36,8 +36,16 @@ public class respawnBall : MonoBehaviour
             StartCoroutine(respawnPlayer());
             count++;
             StartCoroutine(CheckMoving());
+            CheckMoved();
             Debug.Log("Knocked down " + pinsKnocked + " pins");
-            if (count % 2 == 0)
+            if (pinsKnocked == 10)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("Pins"));
+                StartCoroutine(respawnPins());
+                
+
+            }
+            if (pinsKnocked < 10 && !isStrike)
             {
                 Destroy(GameObject.FindGameObjectWithTag("Pins"));
                 StartCoroutine(respawnPins());
@@ -102,7 +110,7 @@ public class respawnBall : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
 
-            
+            if (pinArray[i] != null) { 
             Vector3 finalPos = pinArray[i].transform.rotation.eulerAngles;
             if (pinStartingRotation[i].x != finalPos.x)
             {
@@ -110,28 +118,45 @@ public class respawnBall : MonoBehaviour
                 pinsKnocked++;
             }
         }
+        }
     }
 
+    void CheckMoved()
+    {
+
+        for (int i = 0; i < 10; i++)
+        {
+
+            if (pinArray[i] != null)
+            {
+                Vector3 finalPos = pinArray[i].transform.rotation.eulerAngles;
+                if (pinStartingRotation[i].x != finalPos.x)
+                {
+                    Destroy(GameObject.FindGameObjectWithTag("pin" + i));
+                    pinsKnocked++;
+                }
+            }
+        }
+    }
     void scoreKeeper()
     {
-        curThrow = pinsKnocked;
+
         curFrame = curThrow + pinsKnocked;
 
 
 
-        if (isStrike)
+        if (isStrike && count % 2 == 0)
         {
             curFrame = curThrow*2 + pinsKnocked*2 + 10;
            
             Debug.Log("Ater Strike Score: " + curFrame);
         }
 
-        if (pinsKnocked == 10 && count % 1 == 1)
+        if (pinsKnocked == 10 && count % 1 == 0)
         {
-            
+            curThrow = pinsKnocked;
             Debug.Log("STRIKE");
             isStrike = true;
-            respawnPins();
         }
         Debug.Log("Your score is: " + score);
         pinsKnocked = 0;
