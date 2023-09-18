@@ -16,6 +16,7 @@ TagManager:
   - pin8
   - pin9
   - Score
+  - BowlingBall
   layers:
   - Default
   - TransparentFX

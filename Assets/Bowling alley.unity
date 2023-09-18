@@ -2942,6 +2942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ee82e8a79004c49889acf8e0f81090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curBall: {fileID: 6798721468076833404, guid: 7dee1afb1d30f4731ab48d9e44c0d93e, type: 3}
 --- !u!4 &1365081997
 Transform:
   m_ObjectHideFlags: 0
@@ -3410,6 +3411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51802cdddf9264fdf9c2f61d65732dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ball: {fileID: 0}
 --- !u!1 &1897647434
 GameObject:
   m_ObjectHideFlags: 0
