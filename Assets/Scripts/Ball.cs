@@ -5,25 +5,28 @@ using UnityEngine;
 public class Ball : MonoBehaviour
     {
 
-    public static GameObject BowlingBall { get; set; }
-    public static GameObject curBall;
+    [SerializeField] GameObject BowlingBall { get; set; }
+    [SerializeField] public  GameObject curBall;
 
 
     private void Start()
         {
-        RespawnBall();
+        Debug.Log("Balls First Spawn");
+        StartCoroutine(RespawnBall());
         }
 
-    static public IEnumerator DestroyBall()
+     public IEnumerator DestroyBall()
         {
         yield return new WaitForEndOfFrame();
-        Destroy(BowlingBall);
+        Destroy(curBall);
         }
 
-    static public IEnumerator RespawnBall()
+     public IEnumerator RespawnBall()
         {
         yield return new WaitForEndOfFrame();
-        BowlingBall = Resources.Load("Bowling Ball") as GameObject;
-        curBall = BowlingBall;
+        GameObject objectPrefab = Resources.Load("BowlingBall") as GameObject;
+        Instantiate(curBall);
+        Instantiate(objectPrefab);
+        BowlingBall = GameObject.FindGameObjectWithTag("BowlingBall");
         }
     }

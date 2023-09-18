@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class PrefabControlls : MonoBehaviour
 {
-    private GameObject prefab { get; set; }
+    private static GameObject gameObjectPrefab { get; set; }
 
 
-    IEnumerator RespawnObject(GameObject prefab)
+   public static IEnumerator RespawnObject(GameObject prefab)
     {
-        prefab = this.prefab;
+        gameObjectPrefab = prefab;
         yield return new WaitForSeconds(1);
         GameObject objPrefab = Resources.Load(prefab.ToString()) as GameObject;
+        GameObject obj = Instantiate(objPrefab) as GameObject;
     }
 
-    IEnumerator RemoveObject(GameObject prefab)
+   public static IEnumerator RemoveObject(GameObject prefab)
     {
-        prefab = this.prefab;
+        gameObjectPrefab = prefab;
         yield return new WaitForSeconds(1);
         Destroy(prefab);
     }

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class BallDetector : MonoBehaviour
 {
+    [SerializeField] Ball ball = new Ball();
     private void OnCollisionEnter(Collision collision)
         {
-        if (collision.gameObject.Equals(Ball.curBall))
+        if (collision.gameObject.Equals(ball.curBall))
             {
-            StartCoroutine(Ball.DestroyBall());
-            StartCoroutine(Ball.RespawnBall());
+            StartCoroutine(ball.DestroyBall());
+            StartCoroutine(ball.RespawnBall());
             }
         }
 }
