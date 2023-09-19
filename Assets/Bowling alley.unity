@@ -2942,7 +2942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ee82e8a79004c49889acf8e0f81090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curBall: {fileID: 6798721468076833404, guid: 7dee1afb1d30f4731ab48d9e44c0d93e, type: 3}
+  respawnWall: {fileID: 1817075390}
 --- !u!4 &1365081997
 Transform:
   m_ObjectHideFlags: 0
@@ -3305,9 +3305,8 @@ GameObject:
   - component: {fileID: 1817075394}
   - component: {fileID: 1817075393}
   - component: {fileID: 1817075392}
-  - component: {fileID: 1817075396}
   m_Layer: 0
-  m_Name: respawnBall
+  m_Name: respawnWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3399,19 +3398,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1817075396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817075390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51802cdddf9264fdf9c2f61d65732dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: {fileID: 0}
 --- !u!1 &1897647434
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,27 +6,39 @@ public class Ball : MonoBehaviour
     {
 
     [SerializeField] GameObject BowlingBall { get; set; }
-    [SerializeField] public  GameObject curBall;
-
+    [SerializeField] GameObject respawnWall;
+   
 
     private void Start()
-        {
-        Debug.Log("Balls First Spawn");
-        StartCoroutine(RespawnBall());
+    {
+        BowlingBall = Resources.Load("BowlingBall") as GameObject;
+        Instantiate(BowlingBall);
         }
 
-     public IEnumerator DestroyBall()
-        {
-        yield return new WaitForEndOfFrame();
-        Destroy(curBall);
-        }
+
+    //public IEnumerator DestroyBall()
+    //    {
+    //    GameObject curBall = GameObject.FindGameObjectWithTag("BowlingBall");
+    //    yield return new WaitForEndOfFrame();
+    //    Destroy(curBall);
+    //    }
 
      public IEnumerator RespawnBall()
         {
-        yield return new WaitForEndOfFrame();
-        GameObject objectPrefab = Resources.Load("BowlingBall") as GameObject;
-        Instantiate(curBall);
-        Instantiate(objectPrefab);
-        BowlingBall = GameObject.FindGameObjectWithTag("BowlingBall");
+        GameObject curBall = GameObject.FindGameObjectWithTag("BowlingBall");
+        yield return new WaitForSeconds(1);
+        curBall.GetComponent<RigidBody>() = Vector3.zero;
+        curBall.transform.position = BowlingBall.transform.position;
+        Physics.SyncTransforms();
+
         }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.Equals(respawnWall.transform))
+            {
+            StartCoroutine(DestroyBall());
+            StartCoroutine(RespawnBall());
+            }
     }
+}
