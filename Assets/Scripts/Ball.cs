@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
     {
 
-    [SerializeField] GameObject BowlingBall { get; set; }
+    [SerializeField] static GameObject BowlingBall { get; set; }
     [SerializeField] GameObject respawnWall;
    
 
@@ -16,29 +16,26 @@ public class Ball : MonoBehaviour
         }
 
 
-    //public IEnumerator DestroyBall()
-    //    {
-    //    GameObject curBall = GameObject.FindGameObjectWithTag("BowlingBall");
-    //    yield return new WaitForEndOfFrame();
-    //    Destroy(curBall);
-    //    }
 
-     public IEnumerator RespawnBall()
+
+     public static IEnumerator RespawnBall()
         {
         GameObject curBall = GameObject.FindGameObjectWithTag("BowlingBall");
         yield return new WaitForSeconds(1);
-        curBall.GetComponent<RigidBody>() = Vector3.zero;
+        Rigidbody curBallRB = curBall.GetComponent<Rigidbody>();
+        curBallRB.velocity = Vector3.zero;
+        curBallRB.isKinematic = true;
         curBall.transform.position = BowlingBall.transform.position;
+        curBallRB.isKinematic = false;
         Physics.SyncTransforms();
 
         }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.Equals(respawnWall.transform))
-            {
-            StartCoroutine(DestroyBall());
-            StartCoroutine(RespawnBall());
-            }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.transform.Equals(respawnWall.transform))
+    //        {
+    //        StartCoroutine(RespawnBall());
+    //        }
+    //}
 }

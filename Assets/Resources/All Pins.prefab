@@ -480,6 +480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328430470128327341}
+  - component: {fileID: -9033510415733141139}
   m_Layer: 0
   m_Name: All Pins
   m_TagString: Pins
@@ -512,6 +513,18 @@ Transform:
   - {fileID: 9022260807171373455}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-9033510415733141139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460739478604517677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c77c1f30ae44919be3a23a19cdd810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4550280291880586794
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,8 @@ public class BallDetector : MonoBehaviour
         {
         if (collision.gameObject.transform.Equals(GameObject.FindGameObjectWithTag("BowlingBall").transform))
             {
-            StartCoroutine(Ball.DestroyBall());
-            StartCoroutine(Ball.DestroyBall());
+            StartCoroutine(Ball.RespawnBall());
             }
         }
+        
 }
