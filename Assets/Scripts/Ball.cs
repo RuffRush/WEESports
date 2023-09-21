@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using NaughtyAttributes;
 
 public class Ball : MonoBehaviour
     {
@@ -17,7 +19,7 @@ public class Ball : MonoBehaviour
 
 
 
-
+    
      public static IEnumerator RespawnBall()
         {
         GameObject curBall = GameObject.FindGameObjectWithTag("BowlingBall");
