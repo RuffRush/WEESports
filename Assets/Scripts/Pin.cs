@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
-
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 
 public class Pin : MonoBehaviour
 {
-    [ShowNonSerializedField]
-    GameObject  pinGO;
+    [ShowInInspector]
+ public Transform   pinGO;
 
-    [ShowNonSerializedField]
-    bool        isUp            = true;
+    [ShowInInspector]
+ public bool        isUp        = true;
 
-    [ShowNonSerializedField]
-    int         pinNum;
+    [ShowInInspector]
+ public int         pinNum;
 
 //---------------------------------------------------
 
-    public Pin(GameObject pinGO, int PinNum)
+    public Pin(Transform pinGO, int PinNum)
         {
         pinGO   =   this.pinGO;
         isUp    =   true;
@@ -33,7 +34,7 @@ public class Pin : MonoBehaviour
 
     //---------------------------------------------------
 
-    public GameObject getPinGO()
+    public Transform getPinGO()
         {
         return pinGO;
         }
@@ -48,7 +49,7 @@ public class Pin : MonoBehaviour
         return pinNum;
         }
 
-    public void setPinGO(GameObject pinGO)
+    public void setPinGO(Transform pinGO)
         {
         pinGO = this.pinGO;
         }

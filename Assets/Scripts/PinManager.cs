@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using NaughtyAttributes;
 using System;
+using Sirenix.OdinInspector;
+using Unity.VisualScripting;
+using Sirenix.Serialization;
 
 public class PinManager : Pin
     {
 
-    Pin[]       pinArray             = new Pin[10];
-    Vector3[]   pinStartingRotation = new Vector3[10];
+    [ShowInInspector] [ReadOnly]
+    Pin[]       pinArray                = new Pin[10];
+    [ShowInInspector][ReadOnly]
+    Transform[] pinTransforms;
+    Vector3[]   pinStartingRotation     = new Vector3[10];
 
     //[ShowNonSerializedFieldAttribute]
     
@@ -36,34 +41,46 @@ public class PinManager : Pin
     // Start is called before the first frame update
     void Start()
         {
+      
         StartCoroutine(ArrayFiller());
         }
 
     
     private IEnumerator ArrayFiller()
         {
-        yield return new WaitForEndOfFrame;
-        pinArray[0] = gameObject.AddComponent<Pin>();
-        pinArray[1] = gameObject.AddComponent<Pin>();
-        pinArray[2] = gameObject.AddComponent<Pin>();
-        pinArray[3] = gameObject.AddComponent<Pin>();
-        pinArray[4] = gameObject.AddComponent<Pin>();
-        pinArray[5] = gameObject.AddComponent<Pin>();
-        pinArray[6] = gameObject.AddComponent<Pin>();
-        pinArray[7] = gameObject.AddComponent<Pin>();
-        pinArray[8] = gameObject.AddComponent<Pin>();
-        pinArray[9] = gameObject.AddComponent<Pin>();
+        yield return new WaitForEndOfFrame();
+        GameObject rootGO = GameObject.Find("All Pins");
+        pinTransforms = new Transform[rootGO.transform.childCount];
+        for (int i = 0; i < rootGO.transform.childCount; i++)
+            { 
+            pinTransforms[i] = rootGO.transform.GetChild(i);
+            pinArray[i] = pinTransforms[i].AddComponent<Pin>();
+            //pinArray[i].setPinGO(pinTransforms[i]);
+            //pinArray[i].setPinNum(i + 1);
 
-        PinVarFiller();
+            //pinArray[i].setPinGO(pinTransforms[i].GetComponent<Transform>());
+            pinArray[i].GetComponent<Pin>().setPinGO(pinTransforms[i]);
+            }
+
+        //PinVarFiller();
+        Debug.Log(pinArray);
         }
 
     private void PinVarFiller()
     {
-        for (int i = 0; i < 10; i++)
-            {
-            pinArray[i].setPinGO(GameObject.Find("Bowling Pin " + (i + 1)));
-            pinArray[i].setPinNum(i + 1);
-            }
+        //for (int i = 0; i < 10; i++)
+        //    {
+        //    if (i == 0)
+        //        {
+        //        pinArray[i].setPinGO(pinHolder.transform.Find("Pin").GameObject());
+        //        }
+        //    else
+        //        {
+        //        pinArray[i].setPinGO(pinHolder.transform.Find("Pin (" + i + ")").GameObject());
+        //        }
+        //    Debug.Log(pinArray[i].getPinGO().name);
+        //    pinArray[i].setPinNum(i + 1);
+        //    }
         }
 
     private IEnumerator RespawnPins()
