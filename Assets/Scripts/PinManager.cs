@@ -9,12 +9,12 @@ using Sirenix.Serialization;
 
 public class PinManager : Pin
     {
-
+    
     [ShowInInspector] [ReadOnly]
-    Pin[]       pinArray                = new Pin[10];
+    public static Pin[]       pinArray                = new Pin[10];
     [ShowInInspector][ReadOnly]
-    Transform[] pinTransforms;
-    Vector3[]   pinStartingRotation     = new Vector3[10];
+    public static Transform[] pinTransforms;
+    public static Vector3[]   pinStartingLocation     = new Vector3[10];
 
     //[ShowNonSerializedFieldAttribute]
     
@@ -55,15 +55,18 @@ public class PinManager : Pin
             { 
             pinTransforms[i] = rootGO.transform.GetChild(i);
             pinArray[i] = pinTransforms[i].AddComponent<Pin>();
+            //pinArray[i].setPinGO();
+            pinArray[i].setPinNum(i + 1);
+            pinStartingLocation[i] = pinArray[i].transform.eulerAngles;
             //pinArray[i].setPinGO(pinTransforms[i]);
             //pinArray[i].setPinNum(i + 1);
 
             //pinArray[i].setPinGO(pinTransforms[i].GetComponent<Transform>());
-            pinArray[i].GetComponent<Pin>().setPinGO(pinTransforms[i]);
+            //pinArray[i].GetComponent<Pin>().setPinGO(pinTransforms[i]);
             }
 
         //PinVarFiller();
-        Debug.Log(pinArray);
+       
         }
 
     private void PinVarFiller()
@@ -91,17 +94,18 @@ public class PinManager : Pin
         StartCoroutine(ArrayFiller());
         }
 
-    void CheckMoved()
+    public static IEnumerator CheckMoved()
         {
+        yield return new WaitForSeconds(2);
         for (int i = 0; i < 10; i++)
             {
             if (pinArray[i] != null)
                 {
                 Vector3 finalPos = pinArray[i].transform.rotation.eulerAngles;
-                if (pinStartingRotation[i].x != finalPos.x)
+                if (pinStartingLocation[i].x != finalPos.x)
                     {
                     pinArray[i].setIsUp(false);
-                    Destroy(GameObject.FindGameObjectWithTag("pin" + i));
+                    //Destroy(GameObject.FindGameObjectWithTag("pin" + i));
                     //pinsKnocked++;
                     }
                 }

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using NaughtyAttributes;
 
 
-public class Frames : MonoBehaviour
+
+public class Frames : Frame
 {
     Frame[] frameArray = new Frame[10];
 

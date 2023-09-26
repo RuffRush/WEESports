@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using NaughtyAttributes;
+
 
 
 public class Frame: MonoBehaviour
@@ -26,4 +26,9 @@ public class Frame: MonoBehaviour
         SecondThrow = 0;
         FrameTotal = 0;
         }
+
+    private void Update()
+    {
+        
+    }
 }

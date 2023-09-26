@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using NaughtyAttributes;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 
 public class Pin : MonoBehaviour
 {
@@ -18,16 +14,15 @@ public class Pin : MonoBehaviour
 
 //---------------------------------------------------
 
-    public Pin(Transform pinGO, int PinNum)
+    public Pin(Transform pinGO, int pinNum)
         {
-        pinGO   =   this.pinGO;
-        isUp    =   true;
-        PinNum  =   this.pinNum;
+        this.pinGO  =    pinGO;
+        isUp        =    true;
+        this.pinNum =    pinNum;
         }
 
     public Pin()
         {
-        pinGO = null;
         isUp = true;
         pinNum = 0;
         }
@@ -49,18 +44,18 @@ public class Pin : MonoBehaviour
         return pinNum;
         }
 
-    public void setPinGO(Transform pinGO)
+    public void setPinGO()
         {
-        pinGO = this.pinGO;
+        pinGO = transform;
         }
 
     public void setIsUp(bool isUp)
         {
-        isUp = this.isUp;
+        this.isUp = isUp;
         }
 
     public void setPinNum(int pinNum)
         {
-        pinNum = this.pinNum;
+        this.pinNum = pinNum;
         }
     }
