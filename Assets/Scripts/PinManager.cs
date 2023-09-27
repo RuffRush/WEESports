@@ -7,57 +7,39 @@ using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using Sirenix.Serialization;
 
-public class PinManager : Pin
+public class PinManager : MonoBehaviour
     {
-    
-    [ShowInInspector] [ReadOnly]
-    public static Pin[]       pinArray                = new Pin[10];
-    [ShowInInspector][ReadOnly]
+
+    [ShowInInspector]
+    [ReadOnly]
+    public static Pin[] pinArray = new Pin[10];
+    [ShowInInspector]
+    [ReadOnly]
     public static Transform[] pinTransforms;
-    public static Vector3[]   pinStartingLocation     = new Vector3[10];
+    public static Vector3[] pinStartingLocation = new Vector3[10];
 
-    //[ShowNonSerializedFieldAttribute]
-    
-
-    //[ShowNonSerializedFieldAttribute]
-    //GameObject pin2;
-
-    //[ShowNonSerializedFieldAttribute]
-    //GameObject pin3;
-
-    //[ShowNonSerializedFieldAttribute]
-    //GameObject pin4;
-
-    //[ShowNonSerializedFieldAttribute]
-    //GameObject pin5;
-
-    //[ShowNonSerializedFieldAttribute]
-    //GameObject pin6;
-
-    //[ShowNonSerializedFieldAttribute]
-    //GameObject pin7;
 
 
     // Start is called before the first frame update
     void Start()
         {
-      
+
         StartCoroutine(ArrayFiller());
         }
 
-    
+
     private IEnumerator ArrayFiller()
         {
         yield return new WaitForEndOfFrame();
         GameObject rootGO = GameObject.Find("All Pins");
         pinTransforms = new Transform[rootGO.transform.childCount];
         for (int i = 0; i < rootGO.transform.childCount; i++)
-            { 
+            {
             pinTransforms[i] = rootGO.transform.GetChild(i);
-            pinArray[i] = pinTransforms[i].AddComponent<Pin>();
-            //pinArray[i].setPinGO();
+            pinArray[i] = pinTransforms[i].GetComponent<Pin>();
+            pinArray[i].setPinGO();
             pinArray[i].setPinNum(i + 1);
-            pinStartingLocation[i] = pinArray[i].transform.eulerAngles;
+            pinStartingLocation[i] = pinArray[i].transform.rotation.eulerAngles; ;
             //pinArray[i].setPinGO(pinTransforms[i]);
             //pinArray[i].setPinNum(i + 1);
 
@@ -66,11 +48,11 @@ public class PinManager : Pin
             }
 
         //PinVarFiller();
-       
+
         }
 
     private void PinVarFiller()
-    {
+        {
         //for (int i = 0; i < 10; i++)
         //    {
         //    if (i == 0)
@@ -105,11 +87,16 @@ public class PinManager : Pin
                 if (pinStartingLocation[i].x != finalPos.x)
                     {
                     pinArray[i].setIsUp(false);
+                    Frame.FirstThrow++;
+                    Destroy(pinArray[i].gameObject);
+
                     //Destroy(GameObject.FindGameObjectWithTag("pin" + i));
                     //pinsKnocked++;
                     }
                 }
             }
+        Debug.Log(Frame.FirstThrow);
+
         }
 
     private int CurNumPinsDown()
@@ -124,4 +111,5 @@ public class PinManager : Pin
             }
         return count;
         }
+
     }

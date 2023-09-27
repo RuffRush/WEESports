@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class Frames : Frame
+public class Frames : MonoBehaviour
 {
     Frame[] frameArray = new Frame[10];
 

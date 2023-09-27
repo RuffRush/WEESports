@@ -6,18 +6,24 @@ using UnityEngine;
 
 public class Frame: MonoBehaviour
 {
-    int         FirstThrow      { get; set; }
-    int         SecondThrow     { get; set; }
-    int         FrameTotal      { get; set; }
+public static int         FirstThrow      { get; set; }
+public static int         SecondThrow     { get; set; }
+public static int         FrameTotal      { get; set; }
 
 
 
     public Frame(int firstThrow, int secondThrow)
         {
-        this.FirstThrow = firstThrow;
-        this.SecondThrow = secondThrow;
+        FirstThrow = firstThrow;
+        SecondThrow = secondThrow;
 
         FrameTotal = firstThrow = secondThrow;
+        }
+
+    public Frame(int firstThrow)
+        {
+        FirstThrow = firstThrow;
+        SecondThrow = 0;
         }
 
     public Frame()
