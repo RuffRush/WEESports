@@ -6,6 +6,7 @@ using System;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using Sirenix.Serialization;
+using System.Threading.Tasks;
 
 public class PinManager : MonoBehaviour
     {
@@ -15,8 +16,8 @@ public class PinManager : MonoBehaviour
     public static Pin[] pinArray = new Pin[10];
     [ShowInInspector]
     [ReadOnly]
-    public static Transform[] pinTransforms;
-    public static Vector3[] pinStartingLocation = new Vector3[10];
+    static Transform[] pinTransforms;
+    static Vector3[] pinStartingLocation = new Vector3[10];
 
 
 
@@ -37,9 +38,9 @@ public class PinManager : MonoBehaviour
             {
             pinTransforms[i] = rootGO.transform.GetChild(i);
             pinArray[i] = pinTransforms[i].GetComponent<Pin>();
-            pinArray[i].setPinGO();
-            pinArray[i].setPinNum(i + 1);
-            pinStartingLocation[i] = pinArray[i].transform.rotation.eulerAngles; ;
+            //pinArray[i].setPinGO();
+            //pinArray[i].setPinNum(i + 1);
+            pinStartingLocation[i] = pinTransforms[i].localRotation.eulerAngles; ;
             //pinArray[i].setPinGO(pinTransforms[i]);
             //pinArray[i].setPinNum(i + 1);
 
@@ -76,19 +77,21 @@ public class PinManager : MonoBehaviour
         StartCoroutine(ArrayFiller());
         }
 
-    public static IEnumerator CheckMoved()
+    public async static void CheckMoved()
         {
-        yield return new WaitForSeconds(2);
+        
         for (int i = 0; i < 10; i++)
             {
             if (pinArray[i] != null)
                 {
-                Vector3 finalPos = pinArray[i].transform.rotation.eulerAngles;
+                await Task.Delay(200);
+                GameObject rootGO = GameObject.Find("All Pins");
+                Vector3 finalPos = rootGO.transform.GetChild(i).transform.localRotation.eulerAngles;
                 if (pinStartingLocation[i].x != finalPos.x)
                     {
+                    await Task.Yield();
                     pinArray[i].setIsUp(false);
                     Frame.FirstThrow++;
-                    Destroy(pinArray[i].gameObject);
 
                     //Destroy(GameObject.FindGameObjectWithTag("pin" + i));
                     //pinsKnocked++;

@@ -170,6 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7697c0cf7a9514deb91125c80bcc6301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pinGO: {fileID: 0}
+  pinGO: {fileID: 7918134718127132827}
   isUp: 1
   pinNum: 0

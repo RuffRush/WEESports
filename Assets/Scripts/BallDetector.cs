@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Threading.Tasks;
 
 
 public class BallDetector : MonoBehaviour
@@ -12,22 +13,28 @@ public class BallDetector : MonoBehaviour
         if (collision.gameObject.transform.Equals(GameObject.FindGameObjectWithTag("BowlingBall").transform))
             {
             StartCoroutine(Ball.RespawnBall());
-            StartCoroutine(PinManager.CheckMoved());
-            PinFallCheck();
+            PinManager.CheckMoved();
+            //Wait();
+            //PinFallCheck();
             }
         }
 
 
-    void PinFallCheck()
+    //void PinFallCheck()
+    //    {
+    //    for (int i = 0; i < PinManager.pinArray.Length; i++)
+    //        {
+    //        if (PinManager.pinArray[i] != null && PinManager.pinArray[i].getIsUp() == false)
+    //            {
+    //            firstThrow++;
+    //            Destroy(PinManager.pinArray[i].gameObject);
+    //            }
+    //        }
+    //    Debug.Log(firstThrow);
+    //    }
+
+    async void Wait()
         {
-        for (int i = 0; i < PinManager.pinArray.Length; i++)
-            {
-            if (!PinManager.pinArray[i].getIsUp())
-                {
-                firstThrow++;
-                Destroy(PinManager.pinArray[i].gameObject);
-                }
-            }
-        Debug.Log(firstThrow);
+        await Task.Delay(2000);
         }
 }

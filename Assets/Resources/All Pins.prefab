@@ -62,6 +62,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin
@@ -124,6 +128,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (2)
@@ -198,6 +206,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (5)
@@ -260,6 +272,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (7)
@@ -322,6 +338,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (6)
@@ -384,6 +404,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (9)
@@ -446,6 +470,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (8)
@@ -508,6 +536,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (3)
@@ -570,6 +602,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (1)
@@ -632,6 +668,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3328430470128327341}
     m_Modifications:
+    - target: {fileID: 4303275866968506604, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
+      propertyPath: pinNum
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7704362727480055832, guid: 171d4b0a630f7456fa42cd5c14a975d7, type: 3}
       propertyPath: m_Name
       value: Pin (4)
