@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using NaughtyAttributes;
+using Sirenix.OdinInspector;
+using System.Threading.Tasks;
 
 public class Ball : MonoBehaviour
     {
@@ -13,17 +14,21 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
+        SpawnBall();
+        }
+
+
+    async void SpawnBall()
+        {
+        await Task.Delay(300);
         BowlingBall = Resources.Load("BowlingBall") as GameObject;
         Instantiate(BowlingBall);
         }
 
-
-
-    
-     public static IEnumerator RespawnBall()
+    public static async void RespawnBall()
         {
         GameObject curBall = GameObject.FindGameObjectWithTag("BowlingBall");
-        yield return new WaitForSeconds(1);
+        await Task.Delay(200);
         Rigidbody curBallRB = curBall.GetComponent<Rigidbody>();
         curBallRB.velocity = Vector3.zero;
         curBallRB.isKinematic = true;

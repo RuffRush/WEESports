@@ -6,6 +6,8 @@ public class Pin : MonoBehaviour
     [ShowInInspector]
  public Transform   pinGO;
 
+ public Rigidbody   pinRB;
+
     [ShowInInspector]
  public bool        isUp        = true;
 
@@ -14,9 +16,10 @@ public class Pin : MonoBehaviour
 
 //---------------------------------------------------
 
-    public Pin(Transform pinGO, int pinNum)
+    public Pin(Transform pinGO, Rigidbody pinRB, int pinNum)
         {
         this.pinGO  =    pinGO;
+        this.pinRB  =    pinRB;
         isUp        =    true;
         this.pinNum =    pinNum;
         }
@@ -57,5 +60,10 @@ public class Pin : MonoBehaviour
     public void setPinNum(int pinNum)
         {
         this.pinNum = pinNum;
+        }
+
+    public Rigidbody getPinRB()
+        {
+        return pinRB;
         }
     }

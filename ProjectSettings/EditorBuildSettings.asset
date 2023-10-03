@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Bowling alley.unity
+    path: Assets/Scenes/Bowling alley.unity
     guid: 4cc585e4da3fe46ada2050eeb70c8a05
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 878e927637c9a4f3a95d9ea4d6e6133f, type: 2}

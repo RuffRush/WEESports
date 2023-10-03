@@ -132,7 +132,7 @@ public class respawnBall : MonoBehaviour
             if (pinArray[i] != null)
             {
                 Vector3 finalPos = pinArray[i].transform.rotation.eulerAngles;
-                if (pinStartingRotation[i].x != finalPos.x)
+                if ((pinStartingRotation[i].x + 5 > finalPos.x || pinStartingRotation[i].x - 5 > finalPos.x)  || (pinStartingRotation[i].x + 5 < finalPos.x || pinStartingRotation[i].x - 5 < finalPos.x))
                 {
                     Destroy(GameObject.FindGameObjectWithTag("pin" + i));
                     pinsKnocked++;

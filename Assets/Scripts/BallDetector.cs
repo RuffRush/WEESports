@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 
 
 public class BallDetector : MonoBehaviour
-{ 
+    {
     int firstThrow = Frame.FirstThrow;
     private void OnCollisionEnter(Collision collision)
         {
-        if (collision.gameObject.transform.Equals(GameObject.FindGameObjectWithTag("BowlingBall").transform))
-            {
-            StartCoroutine(Ball.RespawnBall());
-            PinManager.CheckMoved();
-            //Wait();
-            //PinFallCheck();
-            }
+        RunFunctions(collision); 
         }
 
 
@@ -33,8 +27,23 @@ public class BallDetector : MonoBehaviour
     //    Debug.Log(firstThrow);
     //    }
 
-    async void Wait()
+    async void RunFunctions(Collision collision)
         {
-        await Task.Delay(2000);
+        await Task.Yield();
+        if (collision.gameObject.transform.Equals(GameObject.FindGameObjectWithTag("BowlingBall").transform))
+            {
+            PinManager.CheckMoved();
+            await Task.Yield();
+            Ball.RespawnBall();
+            await Task.Yield();
+            }
+
+        if(Frame.FirstThrow == 10)
+            {
+            PinManager.movePinsToOriginal();
+            }
+        await Task.Yield();
         }
+
+
 }
