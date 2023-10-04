@@ -41,6 +41,7 @@ public class BallDetector : MonoBehaviour
         if(Frame.FirstThrow == 10)
             {
             PinManager.movePinsToOriginal();
+            Frame.FirstThrow = 0;
             }
         await Task.Yield();
         }
