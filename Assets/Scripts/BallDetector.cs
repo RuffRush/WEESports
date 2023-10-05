@@ -37,10 +37,11 @@ public class BallDetector : MonoBehaviour
             Ball.RespawnBall();
             await Task.Yield();
             }
-
+        await Task.Yield();
         if(Frame.FirstThrow == 10)
             {
-            PinManager.movePinsToOriginal();
+            await Task.Yield();
+            PinManager.MovePinsToOriginal();
             Frame.FirstThrow = 0;
             }
         await Task.Yield();

@@ -103,7 +103,12 @@ public class PinManager : MonoBehaviour
 
                 Vector3 finalRot = pinArray[i].gameObject.transform.localEulerAngles;
                 Vector3 finalPos = pinArray[i].gameObject.transform.localPosition;
-                if (pinStartPos[i].y > finalPos.y)
+                Vector3 startPos = pinStartPos[i];
+
+
+               
+                Debug.Log(Mathf.Abs((int)(startPos.y * (10))) + " " + Mathf.Abs((int)(finalPos.y * (10))));
+                if (pinArray[i].isUp == true && Mathf.Abs((int)(startPos.y*(10))) < Mathf.Abs((int)(finalPos.y*(10))))
                     {
                     await Task.Yield();
                     pinArray[i].isUp = false;
@@ -137,7 +142,7 @@ public class PinManager : MonoBehaviour
         for (int i = 0; i < pinNum; i++)
             {
             Debug.Log(pinArray[i].isUp);
-            if (!pinArray[i].isUp)
+            if (pinArray[i].isUp == false)
                 {
                 pinRB[i].isKinematic = true;
                 pinArray[i].gameObject.transform.localPosition = new Vector3(pinStartPos[i].x, pinStartPos[i].y, pinStartPos[i].z + 10);
@@ -147,7 +152,7 @@ public class PinManager : MonoBehaviour
 
         }
 
-    public static void movePinsToOriginal()
+    public static void MovePinsToOriginal()
         {
         for (int i = 0; i < pinNum; i++)
             {
@@ -155,7 +160,8 @@ public class PinManager : MonoBehaviour
             }
         for (int i = 0; i < pinNum; i++)
             {
-            pinRB[i].isKinematic = true;
+            pinRB[i].isKinematic = false;
+            pinArray[i].isUp = true;
             }
 
         }
