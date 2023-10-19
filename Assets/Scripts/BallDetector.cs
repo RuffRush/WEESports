@@ -37,7 +37,7 @@ public class BallDetector : MonoBehaviour
             Ball.RespawnBall();
             await Task.Yield();
             }
-        await Task.Yield();
+        await Task.Delay(1000);
         if(Frame.FirstThrow == 10)
             {
             await Task.Yield();

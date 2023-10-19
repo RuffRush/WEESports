@@ -115,13 +115,12 @@ public class PinManager : MonoBehaviour
                     Frame.FirstThrow++;
                     count++;
 
-                    //Destroy(GameObject.FindGameObjectWithTag("pin" + i));
-                    //pinsKnocked++;
                     }
                 }
             }
         Debug.Log(count);
         RemoveKnockedPins();
+        await Task.Yield();
         }
 
     private int CurNumPinsDown()
