@@ -59,9 +59,10 @@ public class PinManager : MonoBehaviour
 
             //pinArray[i].setPinGO(pinTransforms[i].GetComponent<Transform>());
             //pinArray[i].GetComponent<Pin>().setPinGO(pinTransforms[i]);
-
-
-            }
+            pinRB[i].isKinematic = true;
+            await Task.Delay(100);
+            pinRB[i].isKinematic = false;
+        }
 
         //PinVarFiller();
 
