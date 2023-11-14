@@ -118,7 +118,8 @@ public class PinManager : MonoBehaviour
                     }
                 }
             }
-        Debug.Log(count);
+        Debug.Log("Count count: " + count);
+        Debug.Log("Frame Count: " + Frame.FirstThrow);
         RemoveKnockedPins();
         await Task.Yield();
         }

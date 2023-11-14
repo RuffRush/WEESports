@@ -12,5 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Bowling alley.unity
     guid: 4cc585e4da3fe46ada2050eeb70c8a05
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: ed72be55522c8448bae8b0d66fa21adf, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 878e927637c9a4f3a95d9ea4d6e6133f, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 001fda40af7e649c5a205257294ccaee, type: 2}

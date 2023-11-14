@@ -128,10 +128,11 @@ MonoBehaviour:
   m_Name: HDRISky
   m_EditorClassIdentifier: 
   active: 1
-  <displayName>k__BackingField: 
   rotation:
     m_OverrideState: 1
     m_Value: 116
+    min: 0
+    max: 360
   skyIntensityMode:
     m_OverrideState: 1
     m_Value: 0
@@ -141,11 +142,13 @@ MonoBehaviour:
   multiplier:
     m_OverrideState: 0
     m_Value: 1
+    min: 0
   upperHemisphereLuxValue:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.4660715
+    min: 0
   upperHemisphereLuxColor:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {x: 0.18750614, y: 0.29181972, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 1
@@ -156,35 +159,34 @@ MonoBehaviour:
   updatePeriod:
     m_OverrideState: 0
     m_Value: 0
+    min: 0
   includeSunInBaking:
     m_OverrideState: 0
     m_Value: 0
   hdriSky:
     m_OverrideState: 1
     m_Value: {fileID: 8900000, guid: 54a3a0570aebe8949bec4966f1376581, type: 3}
-  distortionMode:
+  enableDistortion:
     m_OverrideState: 0
     m_Value: 0
+  procedural:
+    m_OverrideState: 0
+    m_Value: 1
   flowmap:
     m_OverrideState: 0
     m_Value: {fileID: 0}
   upperHemisphereOnly:
     m_OverrideState: 0
     m_Value: 1
-  scrollOrientation:
-    m_OverrideState: 1
-    m_Value:
-      mode: 0
-      customValue: 116
-      additiveValue: 0
-      multiplyValue: 0
+  scrollDirection:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
   scrollSpeed:
     m_OverrideState: 0
-    m_Value:
-      mode: 1
-      customValue: 100
-      additiveValue: 0
-      multiplyValue: 1
+    m_Value: 2
+    min: 0
   enableBackplate:
     m_OverrideState: 0
     m_Value: 0
@@ -200,25 +202,31 @@ MonoBehaviour:
   projectionDistance:
     m_OverrideState: 0
     m_Value: 16
+    min: 0.0000001
   plateRotation:
     m_OverrideState: 0
     m_Value: 0
+    min: 0
+    max: 360
   plateTexRotation:
     m_OverrideState: 0
     m_Value: 0
+    min: 0
+    max: 360
   plateTexOffset:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0}
   blendAmount:
     m_OverrideState: 0
     m_Value: 0
+    min: 0
+    max: 100
   shadowTint:
     m_OverrideState: 0
-    m_Value:
-      r: 0.5
-      g: 0.5
-      b: 0.5
-      a: 1
+    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
   pointLightShadow:
     m_OverrideState: 0
     m_Value: 0
@@ -228,19 +236,6 @@ MonoBehaviour:
   rectLightShadow:
     m_OverrideState: 0
     m_Value: 0
-  m_SkyVersion: 1
-  enableDistortion:
-    m_OverrideState: 0
-    m_Value: 0
-  procedural:
-    m_OverrideState: 0
-    m_Value: 1
-  scrollDirection:
-    m_OverrideState: 0
-    m_Value: 0
-  m_ObsoleteScrollSpeed:
-    m_OverrideState: 0
-    m_Value: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +248,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
   m_Name: VolumeGlobal
   m_EditorClassIdentifier: 
-  components: []
+  components:
+  - {fileID: 1359070828411649799}
+  - {fileID: -1167143466653396744}
+  - {fileID: 8049981929359091865}
+  - {fileID: 6640133647794636954}
+  - {fileID: 2759069934644561995}
+  - {fileID: 8300247594604814326}
+  - {fileID: 2112682869544596416}
+  - {fileID: 5002876554434076654}
+  - {fileID: -2223948172287066284}
+  - {fileID: -3969488579639410846}
+  - {fileID: 747098994415714109}
+  - {fileID: 4566301752631259820}
 --- !u!114 &747098994415714109
 MonoBehaviour:
   m_ObjectHideFlags: 3
