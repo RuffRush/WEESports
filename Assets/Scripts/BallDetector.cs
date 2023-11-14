@@ -54,13 +54,25 @@ public class BallDetector : MonoBehaviour
 
     private void Update()
         {
-        if (Frame.FirstThrow == 10)
+        int pinKinCount = 0;
+        for (int i = 0; i < PinManager.pinArray.Length; i++)
             {
+            if (PinManager.pinArray[i].getPinRB().isKinematic)
+                {
+                pinKinCount++;
+                }
+            }
+        for (int i = 0; i < PinManager.pinArray.Length; i++)
+            {
+            if (Frame.FirstThrow == 10 || pinKinCount == 10)
+                {
 
             PinManager.MovePinsToOriginal();
             Frame.FirstThrow = 0;
             }
-
         }
-    }
+
+            }
+        }
+    
     
