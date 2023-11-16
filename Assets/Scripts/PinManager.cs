@@ -39,14 +39,14 @@ public class PinManager : MonoBehaviour
     private async void ArrayFiller()
         {
         await Task.Delay(200);
-        GameObject rootGO = GameObject.Find("All Pins");
-        pinNum = rootGO.transform.childCount;
+        
+        pinNum = transform.childCount;
         pinTransforms = new Transform[pinNum];
         pinGO = new GameObject[pinNum];
         for (int i = 0; i < pinNum; i++)
             {
-            pinTransforms[i] = rootGO.transform.GetChild(i).transform;
-            pinGO[i] = rootGO.transform.GetChild(i).gameObject;
+            pinTransforms[i] = transform.GetChild(i).transform;
+            pinGO[i] = transform.GetChild(i).gameObject;
             pinArray[i] = pinGO[i].GetComponent<Pin>();
             //pinArray[i].setPinGO();
             //pinArray[i].setPinNum(i + 1);
