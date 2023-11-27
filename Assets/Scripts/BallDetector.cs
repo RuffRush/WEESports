@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 public class BallDetector : MonoBehaviour
     {
     bool pinsKnocked;
-    int firstThrow = Frame.FirstThrow;
     private void OnCollisionEnter(Collision collision)
         {
         RunFunctions(collision); 
@@ -59,7 +58,9 @@ public class BallDetector : MonoBehaviour
             {
             if (PinManager.pinArray[i].getPinRB().isKinematic)
                 {
-                pinKinCount++;
+
+                Score.frames[i].FirstThrow++;
+
                 }
             }
         for (int i = 0; i < PinManager.pinArray.Length; i++)

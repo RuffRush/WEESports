@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class Frame: MonoBehaviour
 {
-public static int         FirstThrow      { get; set; }
-public static int         SecondThrow     { get; set; }
-public static int         FrameTotal      { get; set; }
+public  int         FirstThrow      { get; set; }
+public  int         SecondThrow     { get; set; }
+public  int         FrameTotal      { get; set; }
 
 
 

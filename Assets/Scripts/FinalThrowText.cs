@@ -1,24 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
-public class Game : MonoBehaviour
+public class FinalThrowText : MonoBehaviour
 {
-
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         
     }
 
-
-    public enum SCORE_STATE
-        {
-        Strike,
-        Spare,
-        openFrame,
-        }
     // Update is called once per frame
     void Update()
     {

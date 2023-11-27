@@ -8,6 +8,8 @@ using TMPro;
 
 public class Score : MonoBehaviour
     {
+   public static Frame[] frames;
+
     [ShowInInspector]
     [ReadOnly]
     public List<TMP_Text> FirstThrowTexts = new List<TMP_Text>();
@@ -25,13 +27,15 @@ public class Score : MonoBehaviour
     public GameObject FinalTextParent;
 
     // Start is called before the first frame update
-    void Start()
+    void awake()
         {
         for (int i = 0; i < FirstThrowParent.transform.childCount; i++)
             {
             FirstThrowTexts.Add(FirstThrowParent.transform.GetChild(i).GetComponent<TMP_Text>());
             SecondThrowTexts.Add(SecondThrowParent.transform.GetChild(i).GetComponent<TMP_Text>());
             FinalTexts.Add(FinalTextParent.transform.GetChild(i).GetComponent<TMP_Text>());
+
+            NewGame();
             }
         }
 
@@ -40,4 +44,11 @@ public class Score : MonoBehaviour
         {
 
         }
+
+    void NewGame()
+        {
+        frames = new Frame[10];
+        }
+
+
     }
