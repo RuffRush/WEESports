@@ -4,50 +4,46 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 using TMPro;
-
+using System;
 
 public class Score : MonoBehaviour
     {
-   public static Frame[] frames;
 
-    [ShowInInspector]
-    [ReadOnly]
-    public List<TMP_Text> FirstThrowTexts = new List<TMP_Text>();
-    [ShowInInspector]
-    public GameObject FirstThrowParent;
-    [ShowInInspector]
-    [ReadOnly]
-    public List<TMP_Text> SecondThrowTexts = new List<TMP_Text>();
-    [ShowInInspector]
-    public GameObject SecondThrowParent;
-    [ShowInInspector]
-    [ReadOnly]
-    public List<TMP_Text> FinalTexts = new List<TMP_Text>();
-    [ShowInInspector]
-    public GameObject FinalTextParent;
+    TMP_Text Scoring;
 
     // Start is called before the first frame update
     void awake()
         {
-        for (int i = 0; i < FirstThrowParent.transform.childCount; i++)
-            {
-            FirstThrowTexts.Add(FirstThrowParent.transform.GetChild(i).GetComponent<TMP_Text>());
-            SecondThrowTexts.Add(SecondThrowParent.transform.GetChild(i).GetComponent<TMP_Text>());
-            FinalTexts.Add(FinalTextParent.transform.GetChild(i).GetComponent<TMP_Text>());
 
-            NewGame();
-            }
         }
 
     // Update is called once per frame
     void Update()
         {
+        for (int i = 0; i < BallDetector.game.frames.Length; i++)
+            {
 
+            Console.WriteLine("Attempt " + i + " - ");
+            Console.WriteLine("[" + BallDetector.game.frames[i].getFirstRoll() + " , ");
+
+            if (BowlingGame.framesStatic[i].getIsSpare())
+                Console.WriteLine("\\");
+
+            else if (BowlingGame.framesStatic[i].getIsStrike())
+                Console.WriteLine("X");
+
+            else
+                Console.WriteLine(BowlingGame.framesStatic[i].getSecondRoll());
+
+            Console.WriteLine("] , Temp: " + BallDetector.game.frames[i].getTemp());
+            Console.WriteLine(", Points: " + BallDetector.game.frames[i].getPoints());
+            Console.WriteLine();
+        }
         }
 
     void NewGame()
         {
-        frames = new Frame[10];
+
         }
 
 

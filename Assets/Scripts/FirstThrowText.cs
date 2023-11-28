@@ -18,6 +18,7 @@ public class FirstThrowText : MonoBehaviour
             {
             firstThrowTexts.Add(transform.GetChild(i).transform.GetComponent<TMP_Text>());
         }
+        firstThrowTexts[0].SetText("99");
     }
     
 

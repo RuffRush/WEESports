@@ -1,0 +1,393 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BowlingGame : MonoBehaviour
+{
+
+    /**
+ * Represents an empty roll in a frame
+ */
+    public static readonly int EMPTY = -1;
+
+    /**
+	 * in 10 - pin bowling last frame is 10
+	 */
+    public static readonly int LAST_FRAME = 10;
+
+    /**
+	 * used when frame 10 was a strike/spare
+	 */
+    public static readonly int BONUS_FRAME_1 = 11;
+
+    /**
+	 * used when frame 10 and frame 11 were strike
+	 */
+    public static readonly int BONUS_FRAME_2 = 12;
+
+    /**
+	 * max frames allowed including bonus frames
+	 */
+    public static readonly int MAX_FRAMES = 12;
+    /**
+	 * max pins that can be rolled in a frame
+	 */
+    public static readonly int MAX_PINS_ROLLED = 10;
+
+    /**
+	 * bonus rolls for strike
+	 */
+    public static readonly int STRIKE_BONUS = 2;
+
+    /**
+	 * bonus rolls for spare
+	 */
+    public static readonly int SPARE_BONUS = 1;
+
+    /**
+	 * array of frames to keep track of rolls and points
+	 */
+    public Frame[] frames;
+
+    public static Frame[] framesStatic;
+    /**
+	 * Keeps track of the attempt (0 - 11). <br>
+	 * current frame = attempt + 1
+	 */
+    private int attempt;
+
+    /**
+	 * Default constructor to initialize the instance variables
+	 */
+    public BowlingGame()
+        {
+
+        this.attempt = 0;
+        this.frames = new Frame[MAX_FRAMES];
+
+        // initialize the frames
+        for (int i = 0; i < frames.Length; i++)
+            {
+
+            this.frames[i] = new Frame();
+            }
+        }
+
+    /**
+	 * Updates the score based on the number of pins knocked
+	 * 
+	 * @param pins - the no. of pins rolled in this roll
+	 */
+    public void roll(int pins)
+        {
+
+        // game in progress
+        if (!isFinished())
+            {
+
+            // number of pins rolled is valid
+            if (pins <= MAX_PINS_ROLLED)
+                {
+
+                // the no. of pins rolled is valid for the current attempt
+                if (isValidRoll(pins, attempt))
+                    {
+
+                    // points are calculated only up to the last frame, not for bonus frames
+                    if (attempt <= LAST_FRAME - 1)
+                        {
+
+                        frames[attempt].addToTemp(pins);
+                        }
+
+                    // the frame before prev gets bonus points from this roll (as strike gets bonus
+                    // from 2 subsequent rolls)
+                    if (attempt - 2 >= 0 && frames[attempt - 2].getBonus() > 0)
+                        {
+
+                        // add bonus points to temp
+                        frames[attempt - 2].addToTemp(pins);
+
+                        // decrease bonus count
+                        frames[attempt - 2].decreaseBonus();
+
+                        // not more bonus for attempt - 2, so calculate final score
+                        if (frames[attempt - 2].getBonus() == 0)
+                            {
+
+                            // if there a frame before attempt - 2
+                            if (attempt - 3 >= 0)
+                                {
+
+                                // add points from prev frame to its points
+                                frames[attempt - 2]
+                                        .setPoints(frames[attempt - 3].getPoints() + frames[attempt - 2].getTemp());
+                                }
+                            // this is the first frame
+                            else
+                                {
+                                frames[attempt - 2].setPoints(frames[attempt - 2].getTemp());
+                                }
+                            }
+                        }
+
+                    // prev frame gets bonus points from this roll
+                    if (attempt - 1 >= 0 && frames[attempt - 1].getBonus() > 0)
+                        {
+
+                        // add bonus points to temp
+                        frames[attempt - 1].addToTemp(pins);
+
+                        // decrease bonus count
+                        frames[attempt - 1].decreaseBonus();
+
+                        // the score for attempt - 1 is now complete
+                        if (frames[attempt - 1].getBonus() == 0)
+                            {
+
+                            // if there a frame before attempt - 1
+                            if (attempt - 2 >= 0)
+                                {
+
+                                // add points from prev frame to its points
+                                frames[attempt - 1]
+                                        .setPoints(frames[attempt - 2].getPoints() + frames[attempt - 1].getTemp());
+                                }
+                            // this is the first frame
+                            else
+                                {
+                                frames[attempt - 1].setPoints(frames[attempt - 1].getTemp());
+                                }
+                            }
+                        }
+
+                    // first roll of the frame
+                    if (frames[attempt].getFirstRoll() == EMPTY)
+                        {
+
+                        frames[attempt].setFirstRoll(pins);
+
+                        // strike
+                        if (isStrike(attempt))
+                            {
+
+                            frames[attempt].setBonus(STRIKE_BONUS);
+                            frames[attempt].setStrike(true);
+
+                            attempt++;
+                            PinManager.MovePinsToOriginal();
+                            return;                            
+                            }
+
+                        // EDGE CASE: if last frame was spare, only first bonusroll is enough
+                        if (attempt == BONUS_FRAME_1 - 1 && isSpare(LAST_FRAME - 1))
+                            {
+
+                            attempt++;
+                            return;
+                            }
+
+                        // EDGE CASE: last attempt was strike, and next was also strike, one more frame
+                        // required
+                        if (attempt == BONUS_FRAME_2 - 1 && isStrike(LAST_FRAME - 1) && isStrike(BONUS_FRAME_1 - 1))
+                            {
+                            PinManager.MovePinsToOriginal();
+                            attempt++;
+                            }
+                        }
+                    // second roll
+                    else
+                        {
+
+                        frames[attempt].setSecondRoll(pins);
+
+                        // spare
+                        if (isSpare(attempt))
+                            {
+
+                            frames[attempt].setBonus(SPARE_BONUS);
+                            frames[attempt].setSpare(true);
+                            }
+                        // open frame
+                        else
+                            {
+                            // add the score to previous score
+                            if (attempt - 1 >= 0)
+                                {
+                                frames[attempt].setPoints(frames[attempt - 1].getPoints() + frames[attempt].getTemp());
+                                }
+                            // this is the first frame
+                            else
+                                {
+                                frames[attempt].setPoints(frames[attempt].getTemp());
+                                }
+                            }
+                        // move to next frame, since this was the second roll
+                        attempt++;
+                        PinManager.MovePinsToOriginal();
+                        return;
+                        }
+                    }
+                else
+                    {
+                    Debug.Log("INVALID ROLL: The number of pins rolled is invalid for this attempt");
+                    }
+                }
+            else
+                {
+                Debug.Log("INVALID ROLL: Cannot knock more than 10 pins");
+                }
+            }
+        else
+            {
+            Debug.Log("GAME OVER!!");
+            }
+        }
+
+    /**
+	 * Checks if the pins knocked are valid for this attempt
+	 * 
+	 * @param pins    - pins knocked
+	 * @param attempt - attempt to check
+	 * @return true if roll is valid for the attempt else return false
+	 * 
+	 */
+    public bool isValidRoll(int pins, int attempt)
+        {
+
+        if (frames[attempt].getFirstRoll() == EMPTY)
+            {
+
+            if (pins <= MAX_PINS_ROLLED)
+                return true;
+            else
+                return false;
+
+            }
+        else
+            {
+
+            if (frames[attempt].getFirstRoll() + pins <= MAX_PINS_ROLLED)
+                {
+                return true;
+                }
+            else
+                {
+                return false;
+                }
+            }
+        }
+
+    /**
+	 * @return the current score of the game
+	 */
+    public int getScore()
+        {
+
+        int ptr = EMPTY;
+
+        // find the last frame with not - zero score
+        for (int i = frames.Length - 1; i >= 0; i--)
+            {
+
+            if (frames[i].getPoints() > 0)
+                {
+                ptr = i;
+                break;
+                }
+            }
+
+        if (ptr == EMPTY)
+            return 0;
+        else
+            return frames[ptr].getPoints();
+        }
+
+    /**
+	 * Indicates whether the game is finished or not
+	 * 
+	 * @return true if the game is finished else false
+	 */
+    public bool isFinished()
+        {
+
+        if (attempt <= LAST_FRAME - 1)
+            {
+
+            return false;
+            }
+        // EDGE CASES: when last rolls are strike/spare
+        else if (attempt == BONUS_FRAME_1 - 1)
+            {
+
+            if (isStrike(LAST_FRAME - 1) || isSpare(LAST_FRAME - 1))
+                {
+                return false;
+                }
+            // game has ended
+            else
+                {
+                return true;
+                }
+
+            }
+        // EDGE CASES: when last rolls are strike/spare
+        else if (attempt == BONUS_FRAME_2 - 1)
+            {
+
+            // strike
+            if (isStrike(LAST_FRAME - 1) && frames[LAST_FRAME - 1].getBonus() > 0)
+                {
+                return false;
+                }
+            // spare
+            else
+                {
+                return true;
+                }
+            }
+        else
+            {
+            return true;
+            }
+        }
+
+    /**
+	 * checks if the attempt was a strike based on the pins rolled
+	 * 
+	 * @param attempt - attempt to check
+	 * @return - true, if it is a strike, else return false
+	 */
+    public bool isStrike(int attempt)
+        {
+
+        // check if first roll was strike
+        return frames[attempt].getFirstRoll() == 10;
+        }
+
+    /**
+	 * checks if the attempt was a spare based on the pins rolled
+	 * 
+	 * @param attempt - attempt to check
+	 * @return - true, if it is a spare, else return false
+	 */
+    public bool isSpare(int attempt)
+        {
+
+        // check if sum of both rolls is 10
+        return (frames[attempt].getFirstRoll() + frames[attempt].getSecondRoll()) == 10;
+        }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        framesStatic = frames;
+    }
+}

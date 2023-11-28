@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 public class PinManager : MonoBehaviour
     {
 
-
+    static int pinsKnocked;
 
 
     [ShowInInspector]
@@ -112,16 +112,23 @@ public class PinManager : MonoBehaviour
                     {
                     await Task.Yield();
                     pinArray[i].isUp = false;
-                    Frame.FirstThrow++;
                     count++;
-
+                    pinsKnocked++;
                     }
                 }
             }
         Debug.Log("Count count: " + count);
-        Debug.Log("Frame Count: " + Frame.FirstThrow);
         RemoveKnockedPins();
         await Task.Yield();
+        }
+
+   public static int getKnockedPins()
+        {
+        return pinsKnocked;         
+        }
+    public static void resetKnockedPins()
+        {
+        pinsKnocked = 0;
         }
 
     private int CurNumPinsDown()

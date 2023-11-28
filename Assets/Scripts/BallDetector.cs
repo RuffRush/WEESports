@@ -5,9 +5,12 @@ using Sirenix.OdinInspector;
 using System.Threading.Tasks;
 
 
-public class BallDetector : MonoBehaviour
+public class BallDetector : BowlingGame
     {
     bool pinsKnocked;
+
+    public int count;
+   public static BowlingGame game = new BowlingGame();
     private void OnCollisionEnter(Collision collision)
         {
         RunFunctions(collision); 
@@ -39,14 +42,9 @@ public class BallDetector : MonoBehaviour
             await Task.Yield();
             Ball.RespawnBall();
             await Task.Yield();
-
+            game.roll(PinManager.getKnockedPins());
+            PinManager.resetKnockedPins();
             await Task.Delay(1000);
-            if (Frame.FirstThrow == 10)
-                {
-                await Task.Yield();
-                PinManager.MovePinsToOriginal();
-                Frame.FirstThrow = 0;
-                }
             await Task.Yield();
             }
         }
@@ -59,17 +57,17 @@ public class BallDetector : MonoBehaviour
             if (PinManager.pinArray[i].getPinRB().isKinematic)
                 {
 
-                Score.frames[i].FirstThrow++;
+                pinKinCount++;
 
                 }
             }
         for (int i = 0; i < PinManager.pinArray.Length; i++)
             {
-            if (Frame.FirstThrow == 10 || pinKinCount == 10)
+            if (count == 10 || pinKinCount == 10)
                 {
 
             PinManager.MovePinsToOriginal();
-            Frame.FirstThrow = 0;
+            pinKinCount = 0;
             }
         }
 

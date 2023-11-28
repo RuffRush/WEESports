@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18336986, g: 0.22718306, b: 0.2957715, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5745,6 +5745,7 @@ GameObject:
   - component: {fileID: 529938052}
   - component: {fileID: 529938051}
   - component: {fileID: 529938054}
+  - component: {fileID: 529938055}
   m_Layer: 0
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -5825,6 +5826,31 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &529938055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529938050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1afb7a06654744be1893cf6939555bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &581088375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5892,6 +5918,24 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1218198563}
   m_SourcePrefab: {fileID: 100100000, guid: b854ccbca53f74691ab53ef4b5b9587e, type: 3}
+--- !u!1 &636464800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7664546623763866137, guid: 6a52add65f42149f698d2c1c097df378, type: 3}
+  m_PrefabInstance: {fileID: 979792656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &636464802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636464800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22effd6f75924b8a96c6df6ea78862c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstThrowTexts: []
 --- !u!1 &772451594
 GameObject:
   m_ObjectHideFlags: 0
@@ -7031,6 +7075,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7064918453543368053, guid: 6a52add65f42149f698d2c1c097df378, type: 3}
       insertIndex: -1
       addedObject: {fileID: 785031769}
+    - targetCorrespondingSourceObject: {fileID: 7664546623763866137, guid: 6a52add65f42149f698d2c1c097df378, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 636464802}
   m_SourcePrefab: {fileID: 100100000, guid: 6a52add65f42149f698d2c1c097df378, type: 3}
 --- !u!1 &1056428415
 GameObject:
@@ -7300,6 +7347,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51802cdddf9264fdf9c2f61d65732dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  count: 0
 --- !u!1 &1140163652
 GameObject:
   m_ObjectHideFlags: 0
@@ -7541,6 +7602,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51802cdddf9264fdf9c2f61d65732dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  count: 0
 --- !u!64 &1218198564
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7721,6 +7796,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51802cdddf9264fdf9c2f61d65732dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  count: 0
 --- !u!1001 &1507711164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8535,6 +8624,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51802cdddf9264fdf9c2f61d65732dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  count: 0
 --- !u!64 &1687050582
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9269,6 +9372,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51802cdddf9264fdf9c2f61d65732dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  count: 0
 --- !u!64 &2133473356
 MeshCollider:
   m_ObjectHideFlags: 0
