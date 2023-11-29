@@ -25,7 +25,9 @@ public class PinManager : MonoBehaviour
     static Vector3[] pinStartingRotation = new Vector3[10];
     static Vector3[] pinStartPos = new Vector3[10];
     static GameObject[] pinGO;
-    static Rigidbody[] pinRB = new Rigidbody[10];
+
+
+    public static Rigidbody[] pinRB = new Rigidbody[10];
 
 
     // Start is called before the first frame update

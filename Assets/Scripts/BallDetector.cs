@@ -10,10 +10,12 @@ public class BallDetector : BowlingGame
     bool pinsKnocked;
 
     public int count;
-   public static BowlingGame game = new BowlingGame();
-    private void OnCollisionEnter(Collision collision)
-        {
-        RunFunctions(collision); 
+    [ShowInInspector]
+    public static BowlingGame game;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        RunFunctions(other); 
         }
 
 
@@ -31,20 +33,24 @@ public class BallDetector : BowlingGame
     //    }
 
 
-
-    async void RunFunctions(Collision collision)
+    private void Awake()
+    {
+        game = new BowlingGame();
+        }
+    async void RunFunctions(Collider trigger)
         {
 
         await Task.Yield();
-        if (collision.gameObject.transform.Equals(GameObject.FindGameObjectWithTag("BowlingBall").transform))
+        if (trigger.gameObject.transform.Equals(GameObject.FindGameObjectWithTag("BowlingBall").transform))
             {
+            await Task.Delay(10);
             PinManager.CheckMoved();
             await Task.Yield();
             Ball.RespawnBall();
             await Task.Yield();
             game.roll(PinManager.getKnockedPins());
             PinManager.resetKnockedPins();
-            await Task.Delay(1000);
+            Score.updateScore();
             await Task.Yield();
             }
         }

@@ -171,5 +171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pinGO: {fileID: 7918134718127132827}
+  pinRB: {fileID: 2995229430128990949}
   isUp: 1
   pinNum: 0
