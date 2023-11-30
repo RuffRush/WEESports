@@ -60,13 +60,13 @@ public class Frame: MonoBehaviour
     public Frame()
         {
 
-        this.firstRoll = BowlingGame.EMPTY;
-        this.secondRoll = BowlingGame.EMPTY;
-        this.temp = 0;
-        this.bonus = 0;
-        this.points = 0;
-        this.isSpare = false;
-        this.isStrike = false;
+        firstRoll = BowlingGame.EMPTY;
+        secondRoll = BowlingGame.EMPTY;
+        temp = 0;
+        bonus = 0;
+        points = 0;
+        isSpare = false;
+        isStrike = false;
         }
 
     /**

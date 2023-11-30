@@ -11,23 +11,23 @@ using System.Threading.Tasks;
 public class PinManager : MonoBehaviour
     {
 
-    static int pinsKnocked;
+     int pinsKnocked;
 
 
     [ShowInInspector]
     [ReadOnly]
-    public static Pin[] pinArray = new Pin[10];
+    public  Pin[] pinArray = new Pin[10];
     [ShowInInspector]
     [ReadOnly]
 
-    static int pinNum;
-    static Transform[] pinTransforms;
-    static Vector3[] pinStartingRotation = new Vector3[10];
-    static Vector3[] pinStartPos = new Vector3[10];
-    static GameObject[] pinGO;
+     int pinNum;
+     Transform[] pinTransforms;
+     Vector3[] pinStartingRotation = new Vector3[10];
+     Vector3[] pinStartPos = new Vector3[10];
+     GameObject[] pinGO;
 
 
-    public static Rigidbody[] pinRB = new Rigidbody[10];
+    public  Rigidbody[] pinRB = new Rigidbody[10];
 
 
     // Start is called before the first frame update
@@ -94,14 +94,14 @@ public class PinManager : MonoBehaviour
         ArrayFiller();
         }
 
-    public async static void CheckMoved()
+    public async void CheckMoved()
         {
         int count = 0;
         for (int i = 0; i < pinNum; i++)
             {
             if (pinArray[i] != null)
                 {
-                await Task.Delay(400);
+                await Task.Run(() => Task.Delay(4000));
 
                 Vector3 finalRot = pinArray[i].gameObject.transform.localEulerAngles;
                 Vector3 finalPos = pinArray[i].gameObject.transform.localPosition;
@@ -120,15 +120,15 @@ public class PinManager : MonoBehaviour
                 }
             }
         Debug.Log("Count count: " + count);
-        RemoveKnockedPins();
+        await Task.Run(() => RemoveKnockedPins());
         await Task.Yield();
         }
 
-   public static int getKnockedPins()
+   public int getKnockedPins()
         {
         return pinsKnocked;         
         }
-    public static void resetKnockedPins()
+    public void resetKnockedPins()
         {
         pinsKnocked = 0;
         }
@@ -146,7 +146,7 @@ public class PinManager : MonoBehaviour
         return count;
         }
 
-    private static void RemoveKnockedPins()
+    private void RemoveKnockedPins()
         {
         for (int i = 0; i < pinNum; i++)
             {
@@ -161,7 +161,7 @@ public class PinManager : MonoBehaviour
 
         }
 
-    public static void MovePinsToOriginal()
+    public void MovePinsToOriginal()
         {
         for (int i = 0; i < pinNum; i++)
             {

@@ -4195,7 +4195,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5981741945844023696}
-  - component: {fileID: 5993685710580918312}
   m_Layer: 0
   m_Name: ScoreScreen
   m_TagString: Untagged
@@ -4220,24 +4219,6 @@ Transform:
   - {fileID: 4269930791278479019}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 48.488, z: 0}
---- !u!114 &5993685710580918312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064918453543368053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b60789a749dd46b5aba2aab94513c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FirstThrowTexts: []
-  FirstThrowParent: {fileID: 7664546623763866137}
-  SecondThrowTexts: []
-  SecondThrowParent: {fileID: 3276834979040297574}
-  FinalTexts: []
-  FinalTextParent: {fileID: 1711050737958970670}
 --- !u!1 &7626686916570125790
 GameObject:
   m_ObjectHideFlags: 0

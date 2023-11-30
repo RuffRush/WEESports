@@ -5,13 +5,14 @@ using Sirenix.OdinInspector;
 using System.Threading.Tasks;
 
 
-public class BallDetector : BowlingGame
+public class BallDetector : MonoBehaviour
     {
     bool pinsKnocked;
 
     public int count;
     [ShowInInspector]
-    public static BowlingGame game;
+    public BowlingGame game;
+    public PinManager pinManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,26 +32,32 @@ public class BallDetector : BowlingGame
     //        }
     //    Debug.Log(firstThrow);
     //    }
-
+    private void Start()
+    {
+        
+    }
 
     private void Awake()
     {
-        game = new BowlingGame();
+        
         }
     async void RunFunctions(Collider trigger)
         {
 
         await Task.Yield();
+        await Task.Delay(400);
+        Task.WaitAll(); 
         if (trigger.gameObject.transform.Equals(GameObject.FindGameObjectWithTag("BowlingBall").transform))
             {
             await Task.Delay(10);
-            PinManager.CheckMoved();
+            await Task.Run(() => pinManager.CheckMoved());
             await Task.Yield();
+            Task.WaitAll();
             Ball.RespawnBall();
             await Task.Yield();
-            game.roll(PinManager.getKnockedPins());
-            PinManager.resetKnockedPins();
-            Score.updateScore();
+            game.roll(pinManager.getKnockedPins());
+            pinManager.resetKnockedPins();
+            await Task.Run(() => Score.updateScore(game));
             await Task.Yield();
             }
         }
@@ -58,21 +65,21 @@ public class BallDetector : BowlingGame
     private void Update()
         {
         int pinKinCount = 0;
-        for (int i = 0; i < PinManager.pinArray.Length; i++)
-            {
-            if (PinManager.pinArray[i].getPinRB().isKinematic)
-                {
+        //for (int i = 0; i < pinManager.pinArray.Length; i++)
+        //    {
+        //    if (pinManager.pinArray[i].getPinRB().isKinematic)
+        //        {
 
-                pinKinCount++;
+        //        pinKinCount++;
 
-                }
-            }
-        for (int i = 0; i < PinManager.pinArray.Length; i++)
+        //        }
+        //    }
+        for (int i = 0; i < pinManager.pinArray.Length; i++)
             {
             if (count == 10 || pinKinCount == 10)
                 {
 
-            PinManager.MovePinsToOriginal();
+            pinManager.MovePinsToOriginal();
             pinKinCount = 0;
             }
         }

@@ -48,9 +48,10 @@ public class BowlingGame : MonoBehaviour
     /**
 	 * array of frames to keep track of rolls and points
 	 */
-    public Frame[] frames;
+    public  Frame[] frames;
 
-    public static Frame[] framesStatic;
+    public PinManager pinManager;
+
     /**
 	 * Keeps track of the attempt (0 - 11). <br>
 	 * current frame = attempt + 1
@@ -60,17 +61,19 @@ public class BowlingGame : MonoBehaviour
     /**
 	 * Default constructor to initialize the instance variables
 	 */
+
+
     public BowlingGame()
         {
 
         this.attempt = 0;
-        this.frames = new Frame[MAX_FRAMES];
+        frames = new Frame[MAX_FRAMES];
 
         // initialize the frames
         for (int i = 0; i < frames.Length; i++)
             {
 
-            this.frames[i] = new Frame();
+            frames[i] = new Frame();
             }
         }
 
@@ -176,7 +179,7 @@ public class BowlingGame : MonoBehaviour
                             frames[attempt].setStrike(true);
 
                             attempt++;
-                            PinManager.MovePinsToOriginal();
+                            pinManager.MovePinsToOriginal();
                             return;                            
                             }
 
@@ -192,7 +195,7 @@ public class BowlingGame : MonoBehaviour
                         // required
                         if (attempt == BONUS_FRAME_2 - 1 && isStrike(LAST_FRAME - 1) && isStrike(BONUS_FRAME_1 - 1))
                             {
-                            PinManager.MovePinsToOriginal();
+                            pinManager.MovePinsToOriginal();
                             attempt++;
                             }
                         }
@@ -225,7 +228,7 @@ public class BowlingGame : MonoBehaviour
                             }
                         // move to next frame, since this was the second roll
                         attempt++;
-                        PinManager.MovePinsToOriginal();
+                        pinManager.MovePinsToOriginal();
                         return;
                         }
                     }
@@ -380,14 +383,12 @@ public class BowlingGame : MonoBehaviour
         }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
-    }
+        }
 
     // Update is called once per frame
     void Update()
     {
-        framesStatic = frames;
     }
 }
