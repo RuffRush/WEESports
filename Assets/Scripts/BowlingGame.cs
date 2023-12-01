@@ -62,7 +62,7 @@ public class BowlingGame : MonoBehaviour
 	 * Default constructor to initialize the instance variables
 	 */
 
-
+    
     public BowlingGame()
         {
 
@@ -385,6 +385,15 @@ public class BowlingGame : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        this.attempt = 0;
+        frames = new Frame[MAX_FRAMES];
+
+        // initialize the frames
+        for (int i = 0; i < frames.Length; i++)
+            {
+
+            frames[i] = new Frame();
+            }
         }
 
     // Update is called once per frame

@@ -1,20 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+using System;
 using Sirenix.OdinInspector;
 using TMPro;
-using System;
+using UnityEngine;
 
 public class Score : MonoBehaviour
     {
 
-    TMP_Text Scoring;
+    [ShowInInspector]
+    public static TMP_Text[] firstThrows;
+    [ShowInInspector]
+    public static TMP_Text[] secondThrows;
+    [ShowInInspector]
+    public static TMP_Text[] scoreTotals;
+    [ShowInInspector]
+    public static TMP_Text   points;
 
     // Start is called before the first frame update
-    void awake()
+    void Awake()
         {
-
+        for (int i = 0; i < 10; i++)
+            {
+            firstThrows[i] = GameObject.Find("FirstThrow (" + i + ")").GetComponent<TMP_Text>();
+            secondThrows[i] = GameObject.Find("SecondThrow (" + i + ")").GetComponent<TMP_Text>();
+            scoreTotals[i] = GameObject.Find("ScoreTotal (" + i + ")").GetComponent<TMP_Text>();
+            points = GameObject.Find("Points").GetComponent<TMP_Text>();
+            }
         }
 
     // Update is called once per frame
@@ -23,25 +33,40 @@ public class Score : MonoBehaviour
         for (int i = 0; i < bowlingGame.frames.Length; i++)
             {
 
+            if (bowlingGame.frames[i].getFirstRoll()!= -1)
+                {
+                String logText = "";
+                logText += $"Attempt {i} - ";
+                logText += $"[ {bowlingGame.frames[i].getFirstRoll()} , ";
+                firstThrows[i].SetText("" + bowlingGame.frames[i].getFirstRoll());
 
 
-            Debug.Log("Attempt " + i + " - ");
-            Debug.Log("[" + bowlingGame.frames[i].getFirstRoll() + " , ");
+                if (bowlingGame.frames[i].getIsSpare())
+                    {
+                    logText += $"\\";
+                    secondThrows[i].SetText("\\");
+                    }
+                else if (bowlingGame.frames[i].getIsStrike()) {
+                    logText += $"X";
+                    secondThrows[i].SetText("X");
 
-            if (bowlingGame.frames[i].getIsSpare())
-                Debug.Log("\\");
+                    }
+                else {
+                    logText += $"{bowlingGame.frames[i].getSecondRoll()}";
+                    secondThrows[i].SetText(""+bowlingGame.frames[i].getSecondRoll());
 
-            else if (bowlingGame.frames[i].getIsStrike())
-                Debug.Log("X");
+                    }
+                logText += $"] , Temp: {bowlingGame.frames[i].getTemp()}";
 
-            else
-                Debug.Log(bowlingGame.frames[i].getSecondRoll());
+                logText += $", Points: {bowlingGame.frames[i].getPoints()}";
+                points.SetText(bowlingGame.frames[i].getPoints() + "");
 
-            Debug.Log("] , Temp: " + bowlingGame.frames[i].getTemp());
-            Debug.Log(", Points: " + bowlingGame.frames[i].getPoints());
-            Debug.Log("");
+
+                Debug.Log(logText);
+                }
+            }
         }
-        }
+
 
     void NewGame()
         {

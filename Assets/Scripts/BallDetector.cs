@@ -16,7 +16,7 @@ public class BallDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        RunFunctions(other); 
+        StartCoroutine(StartRunFunctions(other)); 
         }
 
 
@@ -41,25 +41,26 @@ public class BallDetector : MonoBehaviour
     {
         
         }
-    async void RunFunctions(Collider trigger)
+     IEnumerator StartRunFunctions(Collider trigger)
         {
 
-        await Task.Yield();
-        await Task.Delay(400);
-        Task.WaitAll(); 
+
         if (trigger.gameObject.transform.Equals(GameObject.FindGameObjectWithTag("BowlingBall").transform))
             {
-            await Task.Delay(10);
-            await Task.Run(() => pinManager.CheckMoved());
-            await Task.Yield();
-            Task.WaitAll();
-            Ball.RespawnBall();
-            await Task.Yield();
-            game.roll(pinManager.getKnockedPins());
-            pinManager.resetKnockedPins();
-            await Task.Run(() => Score.updateScore(game));
-            await Task.Yield();
+            yield return StartCoroutine(RunFunctions());
+
             }
+        }
+
+    IEnumerator RunFunctions()
+        {
+        yield return new WaitForSeconds(5f);
+        pinManager.CheckMoved();
+        Task.WaitAll();
+        Ball.RespawnBall();
+        game.roll(pinManager.getKnockedPins());
+        pinManager.resetKnockedPins();
+        Score.updateScore(game);
         }
 
     private void Update()

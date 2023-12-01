@@ -94,14 +94,14 @@ public class PinManager : MonoBehaviour
         ArrayFiller();
         }
 
-    public async void CheckMoved()
+    public void CheckMoved()
         {
         int count = 0;
         for (int i = 0; i < pinNum; i++)
             {
             if (pinArray[i] != null)
                 {
-                await Task.Run(() => Task.Delay(4000));
+                
 
                 Vector3 finalRot = pinArray[i].gameObject.transform.localEulerAngles;
                 Vector3 finalPos = pinArray[i].gameObject.transform.localPosition;
@@ -112,7 +112,6 @@ public class PinManager : MonoBehaviour
                 Debug.Log(Mathf.Abs((int)(startPos.y * (10))) + " " + Mathf.Abs((int)(finalPos.y * (10))));
                 if (pinArray[i].isUp == true && Mathf.Abs((int)(startPos.y*(10))) < Mathf.Abs((int)(finalPos.y*(10))))
                     {
-                    await Task.Yield();
                     pinArray[i].isUp = false;
                     count++;
                     pinsKnocked++;
@@ -120,8 +119,7 @@ public class PinManager : MonoBehaviour
                 }
             }
         Debug.Log("Count count: " + count);
-        await Task.Run(() => RemoveKnockedPins());
-        await Task.Yield();
+        RemoveKnockedPins();
         }
 
    public int getKnockedPins()
