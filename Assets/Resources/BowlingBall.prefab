@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6275259513654140136}
   - component: {fileID: 7956842324687171072}
   - component: {fileID: 1022093179310629093}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BowlingBall
   m_TagString: BowlingBall
   m_Icon: {fileID: 0}
