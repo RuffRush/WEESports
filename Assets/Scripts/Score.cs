@@ -7,11 +7,11 @@ public class Score : MonoBehaviour
     {
 
     [ShowInInspector]
-    public static TMP_Text[] firstThrows;
+    public static TMP_Text[] firstThrows = new TMP_Text[10];
     [ShowInInspector]
-    public static TMP_Text[] secondThrows;
+    public static TMP_Text[] secondThrows = new TMP_Text[10];
     [ShowInInspector]
-    public static TMP_Text[] scoreTotals;
+    public static TMP_Text[] scoreTotals = new TMP_Text[10];
     [ShowInInspector]
     public static TMP_Text   points;
 
@@ -20,6 +20,7 @@ public class Score : MonoBehaviour
         {
         for (int i = 0; i < 10; i++)
             {
+
             firstThrows[i] = GameObject.Find("FirstThrow (" + i + ")").GetComponent<TMP_Text>();
             secondThrows[i] = GameObject.Find("SecondThrow (" + i + ")").GetComponent<TMP_Text>();
             scoreTotals[i] = GameObject.Find("ScoreTotal (" + i + ")").GetComponent<TMP_Text>();
@@ -50,6 +51,9 @@ public class Score : MonoBehaviour
                     logText += $"X";
                     secondThrows[i].SetText("X");
 
+                    } else if (bowlingGame.frames[i].getSecondRoll() == -1)
+                    {
+                    secondThrows[i].SetText("");
                     }
                 else {
                     logText += $"{bowlingGame.frames[i].getSecondRoll()}";
@@ -59,7 +63,11 @@ public class Score : MonoBehaviour
                 logText += $"] , Temp: {bowlingGame.frames[i].getTemp()}";
 
                 logText += $", Points: {bowlingGame.frames[i].getPoints()}";
-                points.SetText(bowlingGame.frames[i].getPoints() + "");
+                if (bowlingGame.frames[i].getSecondRoll() != -1)
+                    {
+                    scoreTotals[i].SetText(bowlingGame.frames[i].getPoints() + "");
+                    points.SetText(bowlingGame.frames[i].getPoints() + "");
+                    }
 
 
                 Debug.Log(logText);
