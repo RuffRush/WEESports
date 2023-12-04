@@ -13,23 +13,23 @@ jobs:
           - Android # Build an Android .apk standalone app.
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@main
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/cache@v3
+      - uses: actions/cache@main
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
       - if: matrix.targetPlatform == 'Android'
         uses: jlumbroso/free-disk-space@main
-      - uses: game-ci/unity-builder@v3
+      - uses: game-ci/unity-builder@main
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@main
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
